@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Approval System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('mainbg.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="#333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position-x: 97%;
+            background-position-y: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Credit Card Approval System</h2>
+    <form id="creditCardForm">
+        <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required>
+        </div>
+        <div>
+            <label for="maritalStatus">Marital Status:</label>
+            <select id="maritalStatus" name="maritalStatus">
+                <option value="">Select Marital Status</option>
+                <option value="married">Married</option>
+                <option value="single">Single</option>
+                <option value="divorced">Divorced</option>
+            </select>
+        </div>
+        <div>
+            <label for="familyMemberCount">Family Member Count:</label>
+            <input type="number" id="familyMemberCount" name="familyMemberCount" min="1" required>
+        </div>
+        <div>
+            <label for="income">Income in INR:</label>
+            <input type="number" id="income" name="income" min="0" required>
+        </div>
+        <div>
+            <label for="employmentStatus">Employment Status:</label>
+            <select id="employmentStatus" name="employmentStatus">
+                <option value="">Select Employment Status</option>
+                <option value="working">Working</option>
+                <option value="unemployed">Unemployed</option>
+                <option value="houseMaker">House Maker</option>
+                <option value="student">Student</option>
+            </select>
+        </div>
+        <div>
+            <label for="employmentLength">Employment Length (in years):</label>
+            <input type="number" id="employmentLength" name="employmentLength" min="0" required>
+        </div>
+        <div>
+            <label for="education">Education:</label>
+            <select id="education" name="education">
+                <option value="">Select Education</option>
+                <option value="10th">10th</option>
+                <option value="12th">12th</option>
+                <option value="underGrad">Under Grad</option>
+                <option value="postGrad">Post Grad</option>
+                <option value="phd">PHD</option>
+            </select>
+        </div>
+        <div>
+            <label for="carOwnership">Car Ownership:</label>
+            <select id="carOwnership" name="carOwnership">
+                <option value="">Select Car Ownership</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="propertyOwnership">Property Ownership:</label>
+            <select id="propertyOwnership" name="propertyOwnership">
+                <option value="">Select Property Ownership</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="debt">Do you have any Debt (in INR):</label>
+            <input type="number" id="debt" name="debt" min="0" required>
+        </div>
+        <div>
+            <label for="creditCardScore">Credit Card Score:</label>
+            <input type="number" id="creditCardScore" name="creditCardScore" min="0" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('creditCardForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = {
+                    gender: form.gender.value,
+                    age: form.age.value,
+                    maritalStatus: form.maritalStatus.value,
+                    familyMemberCount: form.familyMemberCount.value,
+                    income: form.income.value,
+                    employmentStatus: form.employmentStatus.value,
+                    employmentLength: form.employmentLength.value,
+                    education: form.education.value,
+                    carOwnership: form.carOwnership.value,
+                    propertyOwnership: form.propertyOwnership.value,
+                    debt: form.debt.value,
+                    creditCardScore: form.creditCardScore.value
+                };
+
+                // Check if the application is approved
+                const isApproved = formData.age > 18 && formData.creditCardScore > 600 && formData.debt <= 0;
+
+                // Redirect to the result page passing the approval status as URL parameter
+                window.location.href = `result.html?approved=${isApproved}`;
+            });
+        });
+    </script>
+</body>
+</html>

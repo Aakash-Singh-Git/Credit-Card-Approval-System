@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Approval Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('mainbg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+        #heading {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 60px;
+        }
+        #result {
+            font-size: 30px;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #images {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            
+        }
+        #approvedImg,
+        #deniedImg {
+            width: auto;
+            height: 630px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <p id="heading">Credit Card Approval Result</p>
+    <div id="result"></div>
+    <div id="images">
+        <img id="approvedImg" src="happy.png" alt="Approved Image">
+        <img id="deniedImg" src="sorry.jpeg" alt="Denied Image">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const isApproved = params.get('approved') === 'true';
+
+            // Display approval result
+            const resultDiv = document.getElementById('result');
+            if (isApproved) {
+                resultDiv.textContent = 'Congratulations! Your credit card is approved.';
+                document.getElementById('approvedImg').style.display = 'block'; // Show approved image
+                document.getElementById('deniedImg').style.display = 'none'; // Hide denied image
+            } else {
+                resultDiv.textContent = 'Sorry, your credit card application is not approved.';
+                document.getElementById('approvedImg').style.display = 'none'; // Hide approved image
+                document.getElementById('deniedImg').style.display = 'block'; // Show denied image
+            }
+        });
+    </script>
+</body>
+</html>
